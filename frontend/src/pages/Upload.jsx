@@ -6,7 +6,7 @@ import {useParams} from "react-router-dom";
 function Upload() {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState(null);
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const {user} = useParams();
   const handleUpload = async () => {
     if (!video) {
@@ -21,7 +21,7 @@ function Upload() {
 
     try {
       await axios.post(
-        `http://localhost:8000/upload/${user}`,
+        `${API_URL}/upload/${user}`,
         formData
       );
 
