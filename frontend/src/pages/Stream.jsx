@@ -6,14 +6,14 @@ import "./Stream.css";
 function Stream() {
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const API_URL = import.meta.env.VITE_API_URL;
     const [video, setVideo] = useState(null);
 
     useEffect(() => {
         const fetchVideo = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8000/api/video/${id}`
+                    `${API_URL}/api/video/${id}`
                 );
 
                 setVideo(response.data);
