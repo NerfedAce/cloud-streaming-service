@@ -1,38 +1,14 @@
-version: "3.9"
-
 services:
-  postgres:
-    image: postgres:16
-    container_name: postgres
-    restart: always
-
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: my_db
-
-    ports:
-      - "5433:5432"
-
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   backend:
     build: ./backend
     container_name: Backend
+    restart: unless-stopped
 
-    depends_on:
-      - postgres
+    env_file:
+      - .env
 
     ports:
       - "8000:8000"
-
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USER: admin
-      DB_PASSWORD: password
-      DB_NAME: my_db
 
     volumes:
       - ./backend:/app
@@ -40,6 +16,7 @@ services:
   frontend:
     build: ./frontend
     container_name: Frontend
+    restart: unless-stopped
 
     depends_on:
       - backend
@@ -47,7 +24,5 @@ services:
     ports:
       - "5173:5173"
 
-
-
-volumes:
-  postgres_data:
+    volumes:
+      - ./frontend:/app
