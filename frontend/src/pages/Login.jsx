@@ -7,7 +7,7 @@ import {Navigate, useNavigate} from "react-router-dom";
 
 
 function Login() {
-
+    const API_URL = import.meta.env.VITE_API_URL;
     const [form, setForm] = useState({user:"",password:""})
 
     const handleChange = (field,val) => {
@@ -16,7 +16,7 @@ function Login() {
     const navigate = useNavigate()
     const onLogin = async () => {
         try {
-            const response = await axios.post("http://localhost:8000/login",form)
+            const response = await axios.post(`${API_URL}/login`,form)
             if (response.status === 200){
                 navigate(`/dashboard/${form.user}`)
             }
