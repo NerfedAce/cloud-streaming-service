@@ -1,0 +1,16 @@
+.dashboard {
+  min-height: 100vh;
+  padding: 3rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+
+  justify-items: center;
+  align-items: start;
+
+  background: #0f172a;
+}
+.changeTab:hover{
+  cursor: pointer;
+}

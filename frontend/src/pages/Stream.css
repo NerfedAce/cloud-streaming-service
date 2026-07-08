@@ -1,0 +1,75 @@
+.stream-page {
+    min-height: 100vh;
+    background: #0f172a;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 40px;
+}
+
+.stream-container {
+    width: min(100%, 1100px);
+
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.stream-title {
+    color: white;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+.stream-video {
+    width: 100%;
+    max-height: 70vh;
+
+    border-radius: 15px;
+    background: black;
+}
+
+.stream-info {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stream-length {
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+.back-btn {
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.back-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
