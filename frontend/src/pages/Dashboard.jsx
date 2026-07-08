@@ -5,17 +5,19 @@ import {useNavigate, useParams} from "react-router-dom";
 import "./Dashboard.css";
 import {Navigate} from "react-router-dom";
 
+
+
 function Dashboard() {
     const { user } = useParams();
     const [videos, setVideos] = useState([]);
     const navigate = useNavigate();
-
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchVideos = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8000/api/videos/${user}`
+                    `${API_URL}/api/videos/${user}`
                 );
                 setVideos(response.data);
             } catch (err) {
