@@ -29,7 +29,7 @@ services:
 
     environment:
       DB_HOST: postgres
-      DB_PORT: 5433
+      DB_PORT: 5432
       DB_USER: admin
       DB_PASSWORD: password
       DB_NAME: my_db
@@ -47,8 +47,7 @@ services:
     ports:
       - "5173:5173"
 
-    volumes:
-      - ./frontend:/app
+
 
 volumes:
   postgres_data:
