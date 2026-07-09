@@ -56,7 +56,7 @@ def get_data_by_id(id: int):
     except psycopg.OperationalError:
         return []
 
-def add_data(id, title, url, img, length, user):
+def add_data( title, url, img, length, user):
     try:
         with psycopg.connect(
             host=host,
