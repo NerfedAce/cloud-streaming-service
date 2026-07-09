@@ -174,3 +174,6 @@ async def upload(
     finally:
         shutil.rmtree(temp_dir, ignore_errors=True)
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
