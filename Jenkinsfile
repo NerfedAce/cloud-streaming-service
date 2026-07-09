@@ -26,13 +26,13 @@ pipeline {
             }
         }
 
-        stage('Backend Health Check') {
+        stage('Health Check') {
             steps {
                 sh '''
-                curl --fail http://localhost:8000/docs > /dev/null
+                curl --fail http://localhost:8000/health
                 '''
             }
-        }
+}
 
         stage('Frontend Check') {
             steps {
