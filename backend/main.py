@@ -53,7 +53,7 @@ def get_video_length(video_path: str) -> str:
     minutes = int(duration // 60)
     seconds = int(duration % 60)
 
-    return f"{minutes}"
+    return minutes
 
 
 def generate_thumbnail(video_path: str, thumbnail_path: str):
