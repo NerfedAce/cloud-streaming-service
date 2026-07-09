@@ -158,7 +158,7 @@ async def upload(
             length,
             user,
         )
-        if success == -1:
+        if not success :
             raise HTTPException(status_code=500, detail="Database insert failed")
         return {
             "status": "success",
