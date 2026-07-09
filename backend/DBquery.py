@@ -1,7 +1,7 @@
 import psycopg
 import os
 from dotenv import load_dotenv
-
+import traceback
 load_dotenv()
 
 
@@ -78,7 +78,8 @@ def add_data( title, url, img, length, user):
         return True
 
     except psycopg.Error as e:
-        print(e)
+        traceback.print_exc()
+        print("Database error:", e)
         return False
 
 
