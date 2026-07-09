@@ -69,10 +69,10 @@ def add_data(id, title, url, img, length, user):
                 cursor.execute(
                     """
                     INSERT INTO videos
-                    (id, title, url, img, length, user_id)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    ( title, url, img, length, user_id)
+                    VALUES ( %s, %s, %s, %s, %s)
                     """,
-                    (id, title, url, img, length, user),
+                    ( title, url, img, length, user),
                 )
             conn.commit()
         return True
