@@ -31,7 +31,15 @@ function Dashboard() {
     return (
         <div className="dashboard">
             <div className="changeTab">
-                <h2 onClick={() =>{ navigate(`/upload/${user}`)} }>upload</h2>
+                <h2 onClick={() =>{ navigate(`/upload/${user}`)} } style={{
+        display: "inline-block",
+        backgroundColor: "#2563eb",
+        color: "white",
+        padding: "10px 20px",
+        borderRadius: "8px",
+        cursor: "pointer",
+        userSelect: "none",
+    }}>UPLOAD</h2>
             </div>
             {videos.map(video => (
                 <Card
