@@ -1,5 +1,5 @@
 from fastapi import FastAPI,UploadFile, File, Form
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddlewarestr
 from model import form,Movie
 from fastapi import HTTPException
 from DBquery import get_data_by_id , get_data_by_user , add_data
@@ -32,7 +32,7 @@ def upload_to_s3(file_path: str, key: str):
     return f"https://{AWS_BUCKET}.s3.{AWS_REGION}.amazonaws.com/{key}"
 
 
-def get_video_length(video_path: str) -> str:
+def get_video_length(video_path: str) -> int:
     result = subprocess.run(
         [
             "ffprobe",
