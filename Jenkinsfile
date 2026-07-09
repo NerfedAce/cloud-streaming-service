@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -20,32 +21,30 @@ pipeline {
             }
         }
 
-        stage('Wait') {
+        stage('Wait for Startup') {
             steps {
-                sh 'sleep 40'
+                sh 'sleep 15'
             }
         }
 
-        stage('Health Check') {
+        stage('Verify Backend') {
             steps {
-                sh '''
-                curl --fail http://localhost:8000/health
-                '''
+                sh 'docker ps'
+                sh 'curl --fail http://localhost:8000/docs'
             }
-}
+        }
 
-        stage('Frontend Check') {
+        stage('Verify Frontend') {
             steps {
-                sh '''
-                curl --fail http://localhost:5173 > /dev/null || true
-                '''
+                sh 'curl --fail http://localhost:5173'
             }
         }
     }
 
     post {
         always {
-            sh 'docker compose down'
+            sh 'docker compose logs'
+            sh 'docker compose down -v'
         }
     }
 }
