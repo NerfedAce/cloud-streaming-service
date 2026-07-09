@@ -55,3 +55,36 @@ def get_data_by_id(id: int):
 
     except psycopg.OperationalError:
         return []
+
+def add_data(id, title, url, img, length, user):
+    try:
+        with psycopg.connect(
+            host=host,
+            user=db_user,
+            password=password,
+            dbname=dbname,
+            port=port,
+        ) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute(
+                    """
+                    INSERT INTO videos
+                    (id, title, url, img, length, user_id)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    """,
+                    (id, title, url, img, length, user),
+                )
+            conn.commit()
+        return True
+
+    except psycopg.Error as e:
+        print(e)
+        return False
+
+
+
+
+
+
+    
+    
