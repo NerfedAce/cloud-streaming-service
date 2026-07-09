@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class Form(BaseModel):
+class form(BaseModel):
     user:str
     password:str
 
