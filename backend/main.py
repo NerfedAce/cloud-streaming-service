@@ -1,5 +1,5 @@
 from fastapi import FastAPI,UploadFile, File, Form
-from fastapi.middleware.cors import CORSMiddlewarestr
+from fastapi.middleware.cors import CORSMiddleware
 from model import form,Movie
 from fastapi import HTTPException
 from DBquery import get_data_by_id , get_data_by_user , add_data
@@ -119,6 +119,7 @@ async def upload(
     temp_dir = tempfile.mkdtemp()
 
     try:
+        print("Uploading video...")
         # Save uploaded video
         ext = os.path.splitext(video.filename)[1]
 
@@ -140,25 +141,27 @@ async def upload(
         # Upload video to S3
         video_key = f"videos/{video_filename}"
         video_url = upload_to_s3(video_path, video_key)
+        print("Video uploaded:", video_url)
 
         # Upload thumbnail to S3
         thumb_key = f"thumbnails/{thumb_filename}"
         thumb_url = upload_to_s3(thumb_path, thumb_key)
+        print("Thumbnail uploaded:", thumb_url)
 
         # Store metadata
 
-
-        add_data(
+        print("Inserting into database...")
+        success = add_data(
             title,
             video_url,
             thumb_url,
             length,
             user,
         )
-
+        if success == -1:
+            raise HTTPException(status_code=500, detail="Database insert failed")
         return {
             "status": "success",
-            "id": video_id,
             "title": title,
             "url": video_url,
             "img": thumb_url,
