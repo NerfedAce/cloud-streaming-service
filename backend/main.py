@@ -146,10 +146,9 @@ async def upload(
         thumb_url = upload_to_s3(thumb_path, thumb_key)
 
         # Store metadata
-        video_id = str(uuid.uuid4())
+
 
         add_data(
-            video_id,
             title,
             video_url,
             thumb_url,
