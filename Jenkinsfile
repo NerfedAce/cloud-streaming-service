@@ -30,18 +30,19 @@ pipeline {
         stage('Verify Backend') {
             steps {
                 sh '''
-                docker exec Backend curl --fail http://localhost:8000/docs
+                    docker exec Backend curl --fail http://localhost:8000/docs
                 '''
             }
-}
+        }
 
         stage('Verify Frontend') {
             steps {
                 sh '''
-                docker exec Frontend wget --spider http://localhost:5173
+                    docker exec Frontend wget --spider http://localhost:5173
                 '''
             }
-}
+        }
+    }
 
     post {
         always {
